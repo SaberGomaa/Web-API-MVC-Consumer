@@ -31,8 +31,10 @@ namespace Web_API_MVC_Consumer.Controllers
                 return RedirectToAction("NotFound");
             }
 
-
         }
-
+        public ActionResult Edit()
+        {
+            return View();
+        }
     }
 }

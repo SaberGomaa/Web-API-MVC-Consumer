@@ -32,5 +32,10 @@ namespace Web_API_MVC_Consumer.Controllers
             }
         }
 
+        public ActionResult Edit()
+        {
+            return View(); 
+        }
+
     }
 }
