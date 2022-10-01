@@ -1,0 +1,31 @@
+﻿@using Web_API_MVC_Consumer.Models
+
+@model List<Department>
+
+@{
+    int counter = 1;
+    ViewBag.Title = "Departmrnts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr />
+<h2 class="text-center">View Departments</h2>
+<hr />
+
+<table class="table table-active table-bordered">
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach(var i in Model)
+            {
+                <tr>
+                    <td>@counter</td>
+                    <td>@i.Name</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "Department", new { Id = i.DepartmentId } , new {@class="btn btn-warning"})</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Department", new { Id = i.DepartmentId }, new { @class = "btn btn-danger" })</td>
+                </tr>
+        counter++;
+    }
+</table>
