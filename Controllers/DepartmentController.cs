@@ -32,9 +32,20 @@ namespace Web_API_MVC_Consumer.Controllers
             }
 
         }
-        public ActionResult Edit()
+        public ActionResult Edit(int Id)
         {
-            return View();
+            HttpClient client = new HttpClient();
+            var result = client.GetAsync($"http://127.0.0.1:82/api/department/{Id}").Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+                var dept = result.Content.ReadAsAsync<Department>().Result;
+                return View(dept);
+            }
+            else
+            {
+                return View("view");
+            }
         }
     }
 }
