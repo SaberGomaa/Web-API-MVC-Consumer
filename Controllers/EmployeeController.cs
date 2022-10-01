@@ -19,7 +19,6 @@ namespace Web_API_MVC_Consumer.Controllers
         }
 
 
-    // GET: Employee
         public ActionResult Index()
         {
             return View();
@@ -42,7 +41,16 @@ namespace Web_API_MVC_Consumer.Controllers
 
         public ActionResult Edit(int Id)
         {
-            return View(); 
+            var result = client.GetAsync($"employee/{Id}").Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+                var emp = result.Content.ReadAsAsync<Employee>().Result;
+                return View(emp);
+            }
+            
+            return RedirectToAction("view");
+            
         }
 
     }
