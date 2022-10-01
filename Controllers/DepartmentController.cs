@@ -10,7 +10,14 @@ namespace Web_API_MVC_Consumer.Controllers
 {
     public class DepartmentController : Controller
     {
-        // GET: Department
+
+        public HttpClient client = new HttpClient();
+
+        public DepartmentController()
+        {
+            client.BaseAddress = new Uri("http://127.0.0.1:82/api/");
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -18,8 +25,7 @@ namespace Web_API_MVC_Consumer.Controllers
 
         public ActionResult view()
         {
-            HttpClient client = new HttpClient();
-            var result = client.GetAsync("http://localhost:82/api/department").Result;
+            var result = client.GetAsync("department").Result;
 
             if (result.IsSuccessStatusCode)
             {
@@ -34,8 +40,7 @@ namespace Web_API_MVC_Consumer.Controllers
         }
         public ActionResult Edit(int Id)
         {
-            HttpClient client = new HttpClient();
-            var result = client.GetAsync($"http://127.0.0.1:82/api/department/{Id}").Result;
+            var result = client.GetAsync($"department/{Id}").Result;
 
             if (result.IsSuccessStatusCode)
             {
