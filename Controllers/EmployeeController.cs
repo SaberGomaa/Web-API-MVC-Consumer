@@ -10,7 +10,16 @@ namespace Web_API_MVC_Consumer.Controllers
 {
     public class EmployeeController : Controller
     {
-        // GET: Employee
+        
+        public HttpClient client = new HttpClient();
+
+        public EmployeeController()
+        {
+            client.BaseAddress =new Uri("http://127.0.0.1:82/api/");
+        }
+
+
+    // GET: Employee
         public ActionResult Index()
         {
             return View();
@@ -19,8 +28,7 @@ namespace Web_API_MVC_Consumer.Controllers
 
         public ActionResult view()
         {
-            HttpClient client = new HttpClient();
-            var result = client.GetAsync("http://127.0.0.1:82/api/employee").Result;
+            var result = client.GetAsync("employee").Result;
             if (result.IsSuccessStatusCode)
             {
                 var emps = result.Content.ReadAsAsync<List<Employee>>().Result;
@@ -32,7 +40,7 @@ namespace Web_API_MVC_Consumer.Controllers
             }
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int Id)
         {
             return View(); 
         }
