@@ -11,6 +11,9 @@
 <h2 class="text-center">View Departments</h2>
 <hr />
 
+@Html.ActionLink("Create New ", "create", "Department", null, new { @class = "btn btn-info mb-3" })
+
+
 <table class="table table-active table-bordered text-center">
     <tr class="table-dark">
         <th>No</th>
@@ -18,14 +21,14 @@
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    @foreach(var i in Model)
-            {
-                <tr>
-                    <td>@counter</td>
-                    <td>@i.Name</td>
-                    <td>@Html.ActionLink("Edit", "Edit", "Department", new { Id = i.DepartmentId } , new {@class="btn btn-warning"})</td>
-                    <td>@Html.ActionLink("Delete", "Delete", "Department", new { Id = i.DepartmentId }, new { @class = "btn btn-danger" })</td>
-                </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@counter</td>
+            <td>@i.Name</td>
+            <td>@Html.ActionLink("Edit", "Edit", "Department", new { Id = i.DepartmentId }, new { @class = "btn btn-warning" })</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Department", new { Id = i.DepartmentId }, new { @class = "btn btn-danger" })</td>
+        </tr>
         counter++;
     }
 </table>
