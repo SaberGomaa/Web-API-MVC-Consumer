@@ -6,13 +6,12 @@
 }
 <hr />
 
-
 <h2 class="text-center">View Employees</h2>
 
 <hr />
 
-<table class="table table-active">
-    <tr>
+<table class="table table-active text-center">
+    <tr class="table-dark">
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -25,7 +24,9 @@
         <th>
             Department Name
         </th>
-        <th></th>
+        <th>Edit</th>
+        <th>Delete</th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -44,9 +45,10 @@
                 @Html.DisplayFor(modelItem => item.Department.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", "Employee", new { id = item.Id } , new {@class="btn btn-warning"})
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", "Employee", new { id = item.Id }, new {@class="btn btn-danger"})
             </td>
         </tr>
     }
