@@ -42,13 +42,17 @@ namespace Web_API_MVC_Consumer.Controllers
         public ActionResult Edit(int Id)
         {
             var result = client.GetAsync($"employee/{Id}").Result;
+            var result1 = client.GetAsync("department").Result;
 
-            if (result.IsSuccessStatusCode)
+            if (result.IsSuccessStatusCode && result1.IsSuccessStatusCode)
             {
+                var depts = result1.Content.ReadAsAsync<List<Department>>().Result;
                 var emp = result.Content.ReadAsAsync<Employee>().Result;
+
+                ViewBag.depts = depts;
                 return View(emp);
             }
-            
+
             return RedirectToAction("view");
             
         }
