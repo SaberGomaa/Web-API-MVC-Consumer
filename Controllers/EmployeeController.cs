@@ -53,5 +53,27 @@ namespace Web_API_MVC_Consumer.Controllers
             
         }
 
+        [HttpPost]
+        public ActionResult Edit(int Id , Employee emp)
+        {
+            if (emp.Id == Id)
+            {
+                var result = client.PutAsJsonAsync($"employee/{Id}", emp).Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("view");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View(emp);
+            }
+        }
+
     }
 }
