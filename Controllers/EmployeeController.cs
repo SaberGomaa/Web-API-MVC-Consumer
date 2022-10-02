@@ -49,7 +49,9 @@ namespace Web_API_MVC_Consumer.Controllers
                 var depts = result1.Content.ReadAsAsync<List<Department>>().Result;
                 var emp = result.Content.ReadAsAsync<Employee>().Result;
 
-                ViewBag.depts = depts;
+                SelectList dpts = new SelectList(depts, "DepartmentId", "Name");
+
+                ViewBag.depts = dpts;
                 return View(emp);
             }
 
